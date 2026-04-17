@@ -535,16 +535,6 @@
     padding: 3px 11px; font-size: 0.75rem; font-weight: 500;
   }
 
-  .cc-salary {
-    display: flex; align-items: center; gap: 8px;
-    background: rgba(16,185,129,0.08);
-    border: 1px solid rgba(16,185,129,0.2);
-    border-radius: 10px; padding: 10px 14px;
-  }
-
-  .cc-salary i { color: var(--green); font-size: 0.85rem; }
-  .cc-salary span { color: var(--green); font-size: 0.85rem; font-weight: 600; }
-
   /* ── ROADMAP ── */
   #roadmap { background: var(--bg); }
 
@@ -690,65 +680,6 @@
   }
 
   .res-link:hover { gap: 8px; }
-
-  /* ── FAQ ── */
-  #faq { background: var(--bg); }
-
-  .faq-list {
-    margin-top: 56px; max-width: 860px; margin-left: auto; margin-right: auto;
-    margin-top: 56px;
-    display: flex; flex-direction: column; gap: 12px;
-  }
-
-  .faq-item {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px; overflow: hidden;
-    transition: border-color 0.3s;
-  }
-
-  .faq-item.open { border-color: var(--purple); }
-
-  .faq-question {
-    width: 100%; background: none; border: none; color: var(--white);
-    padding: 22px 24px; display: flex; align-items: center;
-    justify-content: space-between; gap: 16px;
-    cursor: pointer; font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem; font-weight: 600; text-align: left;
-    transition: color 0.2s;
-  }
-
-  .faq-question:hover { color: var(--purple-light); }
-
-  .faq-q-icon {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: rgba(124,58,237,0.1);
-    border: 1px solid rgba(124,58,237,0.3);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: transform 0.3s, background 0.3s;
-  }
-
-  .faq-item.open .faq-q-icon {
-    transform: rotate(180deg);
-    background: rgba(124,58,237,0.25);
-  }
-
-  .faq-q-icon i { font-size: 0.75rem; color: var(--purple-light); }
-
-  .faq-answer {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s;
-  }
-
-  .faq-item.open .faq-answer { max-height: 400px; }
-
-  .faq-answer-inner {
-    padding: 0 24px 24px;
-    color: var(--gray-light); font-size: 0.95rem; line-height: 1.7;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding-top: 16px;
-  }
 
   /* ── MY PROJECTS ── */
   #projects { background: var(--bg2); }
@@ -1066,7 +997,6 @@
       <li><a href="#careers">Careers</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#resources">Resources</a></li>
-      <li><a href="#faq">FAQ</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#cta">Connect</a></li>
     </ul>
@@ -1084,7 +1014,6 @@
   <a href="#careers" onclick="closeMobile()">Career Paths</a>
   <a href="#roadmap" onclick="closeMobile()">Roadmap</a>
   <a href="#resources" onclick="closeMobile()">Resources</a>
-  <a href="#faq" onclick="closeMobile()">FAQ</a>
   <a href="#projects" onclick="closeMobile()">My Projects</a>
   <a href="#cta" onclick="closeMobile()">Connect</a>
 </div>
@@ -1451,7 +1380,6 @@
         <div class="cc-skills">
           <span class="cc-skill">Python</span><span class="cc-skill">MLflow</span><span class="cc-skill">Docker</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹12 – 40 LPA</span></div>
       </div>
 
       <div class="career-card reveal reveal-delay-1">
@@ -1463,7 +1391,6 @@
         <div class="cc-skills">
           <span class="cc-skill">Pandas</span><span class="cc-skill">Sklearn</span><span class="cc-skill">SQL</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹10 – 35 LPA</span></div>
       </div>
 
       <div class="career-card reveal reveal-delay-2">
@@ -1475,7 +1402,6 @@
         <div class="cc-skills">
           <span class="cc-skill">PyTorch</span><span class="cc-skill">Math</span><span class="cc-skill">Papers</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹20 – 80 LPA</span></div>
       </div>
 
       <div class="career-card reveal reveal-delay-3">
@@ -1487,7 +1413,6 @@
         <div class="cc-skills">
           <span class="cc-skill">HuggingFace</span><span class="cc-skill">BERT</span><span class="cc-skill">spaCy</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹14 – 45 LPA</span></div>
       </div>
 
       <div class="career-card reveal">
@@ -1499,7 +1424,6 @@
         <div class="cc-skills">
           <span class="cc-skill">OpenCV</span><span class="cc-skill">YOLO</span><span class="cc-skill">CNNs</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹14 – 50 LPA</span></div>
       </div>
 
       <div class="career-card reveal reveal-delay-1">
@@ -1511,7 +1435,6 @@
         <div class="cc-skills">
           <span class="cc-skill">Kubernetes</span><span class="cc-skill">Airflow</span><span class="cc-skill">AWS</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹15 – 45 LPA</span></div>
       </div>
 
       <div class="career-card reveal reveal-delay-2">
@@ -1523,7 +1446,6 @@
         <div class="cc-skills">
           <span class="cc-skill">Strategy</span><span class="cc-skill">AI Literacy</span><span class="cc-skill">Roadmaps</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹18 – 55 LPA</span></div>
       </div>
 
       <div class="career-card reveal reveal-delay-3">
@@ -1535,7 +1457,6 @@
         <div class="cc-skills">
           <span class="cc-skill">LangChain</span><span class="cc-skill">GPT API</span><span class="cc-skill">RAG</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹10 – 30 LPA</span></div>
       </div>
 
       <div class="career-card reveal">
@@ -1547,7 +1468,6 @@
         <div class="cc-skills">
           <span class="cc-skill">Fairness</span><span class="cc-skill">Policy</span><span class="cc-skill">SHAP</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹12 – 35 LPA</span></div>
       </div>
 
       <div class="career-card reveal reveal-delay-1">
@@ -1559,7 +1479,6 @@
         <div class="cc-skills">
           <span class="cc-skill">Spark</span><span class="cc-skill">dbt</span><span class="cc-skill">BigQuery</span>
         </div>
-        <div class="cc-salary"><i class="fas fa-sack-dollar"></i><span>₹10 – 38 LPA</span></div>
       </div>
 
     </div>
@@ -1836,115 +1755,6 @@
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-label">Common Questions</div>
-    <h2 class="section-title text-center">Questions Students <span>Always Ask</span></h2>
-    <p class="section-desc text-center" style="margin: 0 auto 0;">Honest answers — no fluff, no gatekeeping.</p>
-
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          <span><i class="fas fa-user-graduate" style="color:var(--purple-light);margin-right:10px;"></i>Do I need a PhD to work in AI?</span>
-          <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <strong>No — for 95% of AI jobs, a PhD is not required.</strong> The vast majority of ML Engineers, Data Scientists, NLP Engineers, and even some Research Scientists don't have PhDs. What matters is your portfolio, your ability to solve real problems, and your depth of knowledge demonstrated through projects and contributions. A PhD is only truly necessary if you want to pursue fundamental AI research at a top lab like DeepMind, OpenAI, or academia. Focus on building skills and shipping projects instead.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          <span><i class="fas fa-code" style="color:var(--blue-light);margin-right:10px;"></i>Which programming language should I learn first?</span>
-          <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <strong>Python. Full stop.</strong> Python is the language of AI and ML. The entire ecosystem — NumPy, Pandas, Scikit-learn, PyTorch, TensorFlow, HuggingFace — is Python-first. Don't split your attention learning R, Julia, or C++ at the start. Get solid in Python first: data structures, OOP, file I/O, and virtual environments. Once you're working, you might pick up some C++ for inference optimization or Rust for systems work — but that's months or years later.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          <span><i class="fas fa-robot" style="color:var(--green);margin-right:10px;"></i>Will AI replace my job?</span>
-          <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            AI will automate tasks, not entire jobs — at least for the foreseeable future. The more important question is: <strong>will people who use AI replace people who don't?</strong> Yes, absolutely. The safest position is to become someone who builds and deploys AI, not someone whose repetitive tasks get automated. If you're learning AI right now, you're on the right side of this shift. The roles at risk are those doing purely repetitive, rules-based work with no creativity or judgment involved.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          <span><i class="fas fa-laptop" style="color:var(--yellow);margin-right:10px;"></i>What laptop do I need to learn AI?</span>
-          <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <strong>Any modern laptop with 8GB+ RAM is enough to get started.</strong> For deep learning experiments, you don't need a local GPU — use Google Colab (free), Kaggle Notebooks (free), or Lightning Studio. These give you free GPU access in the cloud. If you eventually want a local setup, an NVIDIA GPU (RTX 3060 or better) is ideal. Don't let hardware be a barrier. Many top Kaggle Grandmasters started on budget laptops and used cloud compute for training.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          <span><i class="fas fa-clock" style="color:var(--purple-light);margin-right:10px;"></i>Is it too late to enter AI?</span>
-          <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <strong>Absolutely not.</strong> We are in the early innings of the AI era. GPT-4 was released in 2023. Agentic AI is just getting started. The demand for AI talent is projected to outstrip supply for at least the next decade. In fact, the next 3–5 years may be the best time to enter the field as AI becomes embedded in every industry and company. The people who feel "late" now will be considered early pioneers by 2030. Start today.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          <span><i class="fas fa-calendar-check" style="color:var(--blue-light);margin-right:10px;"></i>How long does it take to get a job in AI?</span>
-          <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Realistically, <strong>12–24 months of consistent, focused effort</strong> is a reasonable timeline to land your first AI/ML role. Factors that speed it up: prior programming experience, strong math background, active participation on Kaggle, visible GitHub portfolio, and networking on LinkedIn. Factors that slow it down: inconsistency, only doing tutorials without projects, and applying without a portfolio. Your first role might be a Data Analyst or ML intern — that's perfectly fine. Each step compounds.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          <span><i class="fas fa-university" style="color:var(--green);margin-right:10px;"></i>Should I do MTech / MS or join a startup?</span>
-          <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            It depends on your goal. <strong>MTech/MS is valuable if</strong>: you want to go into research, target top-tier companies (Google, Meta, DeepMind), need a visa for the US/UK, or feel your fundamentals need serious strengthening in a structured environment. <strong>Join a startup if</strong>: you want to ship things fast, learn end-to-end deployment, and have a strong self-study ability. Many successful ML Engineers never did a master's. The honest advice: if you can get into IIT/IISc or a top global university, do it. Otherwise, build while you apply.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          <span><i class="fas fa-square-root-variable" style="color:#f59e0b;margin-right:10px;"></i>How important is math for AI/ML?</span>
-          <div class="faq-q-icon"><i class="fas fa-chevron-down"></i></div>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <strong>Important — but not as scary as people make it sound.</strong> For most ML Engineering roles, you need: Linear Algebra (vectors, matrices, dot products), Calculus (derivatives, gradients, chain rule), Probability & Statistics (distributions, Bayes, hypothesis testing). You do NOT need to prove theorems or derive equations from scratch. Understanding what's happening conceptually is enough for 90% of applied work. For research roles, the math bar is higher. Start with 3Blue1Brown on YouTube and Khan Academy — you'll be surprised how quickly it clicks when you connect it to code.
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- MY PROJECTS -->
 <section id="projects">
   <div class="container">
@@ -2201,14 +2011,6 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  // FAQ Accordion
-  function toggleFAQ(btn) {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
 
   // Particle canvas
   (function() {
