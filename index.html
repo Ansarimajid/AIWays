@@ -26,13 +26,19 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
 
   body {
     font-family: 'Inter', sans-serif;
     background: var(--bg);
     color: var(--white);
     overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
   }
 
   h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
@@ -105,6 +111,7 @@
   /* ── HERO ── */
   #hero {
     min-height: 100vh;
+    width: 100%;
     display: flex; align-items: center; justify-content: center;
     position: relative; overflow: hidden;
     padding: calc(var(--nav-height) + 60px) 24px 80px;
@@ -112,6 +119,8 @@
 
   #particles-canvas {
     position: absolute; inset: 0; z-index: 0;
+    width: 100% !important;
+    max-width: 100vw;
   }
 
   .hero-glow {
@@ -233,7 +242,7 @@
   }
 
   /* ── SECTIONS ── */
-  section { padding: 100px 24px; }
+  section { padding: 100px 24px; width: 100%; max-width: 100vw; }
 
   .container { max-width: 1200px; margin: 0 auto; }
 
@@ -1348,7 +1357,7 @@
     </div>
 
     <div class="why-text reveal">
-      <strong>This is not hype — it's the biggest hiring wave of our generation.</strong> Every industry from healthcare to finance, retail to agriculture is integrating AI into its core operations. Companies are desperately searching for people who can build, deploy, and maintain AI systems. A student who starts learning today and stays consistent for 18–24 months can realistically land a ₹12–30 LPA role. The best time to start was yesterday. The second best time is <strong>right now.</strong>
+      <strong>This is not hype — it's the biggest hiring wave of our generation.</strong> Every industry from healthcare to finance, retail to agriculture is integrating AI into its core operations. Companies are desperately searching for people who can build, deploy, and maintain AI systems. A student who starts learning today and stays consistent for just 12 months can realistically land their first AI role. The best time to start was yesterday. The second best time is <strong>right now.</strong>
     </div>
   </div>
 </section>
@@ -1752,8 +1761,8 @@
 <section id="roadmap">
   <div class="container">
     <div class="section-label">Learning Path</div>
-    <h2 class="section-title">Your <span>24-Month Roadmap</span> to Employment</h2>
-    <p class="section-desc">No shortcuts, no shortcuts claimed. Just a realistic, structured plan that has worked for hundreds of students before you.</p>
+    <h2 class="section-title">Your <span>12-Month Roadmap</span> to Employment</h2>
+    <p class="section-desc">An intensive but achievable plan. Stay consistent — even 2 hours a day compounds into job-ready skills within a year.</p>
 
     <div class="roadmap-timeline">
 
@@ -1763,9 +1772,9 @@
         <div class="phase-body">
           <div class="phase-meta">
             <div class="phase-title">Phase 1 — Build the Foundation</div>
-            <div class="phase-badge">0 – 6 Months</div>
+            <div class="phase-badge">0 – 3 Months</div>
           </div>
-          <div class="phase-desc">Don't rush. Solid fundamentals will make everything that comes next 10× easier. Focus ruthlessly on Python and math.</div>
+          <div class="phase-desc">Move fast but build solid fundamentals. Python and math are the bedrock — everything else sits on top of these.</div>
           <div class="phase-skills">
             <div class="phase-skill"><i class="fab fa-python c-purple"></i> Python basics</div>
             <div class="phase-skill"><i class="fas fa-square-root-variable c-purple"></i> Linear Algebra</div>
@@ -1785,9 +1794,9 @@
         <div class="phase-body">
           <div class="phase-meta">
             <div class="phase-title">Phase 2 — Core Machine Learning</div>
-            <div class="phase-badge">6 – 12 Months</div>
+            <div class="phase-badge">3 – 6 Months</div>
           </div>
-          <div class="phase-desc">Learn the classic ML toolkit and ship your first real project. This phase gets you interview-ready for data analyst roles.</div>
+          <div class="phase-desc">Learn the classic ML toolkit and ship your first real project. By month 6 you should be interview-ready for analyst and junior ML roles.</div>
           <div class="phase-skills">
             <div class="phase-skill"><i class="fas fa-circle-dot c-blue"></i> Scikit-learn</div>
             <div class="phase-skill"><i class="fas fa-tree c-blue"></i> Regression & Classification</div>
@@ -1807,7 +1816,7 @@
         <div class="phase-body">
           <div class="phase-meta">
             <div class="phase-title">Phase 3 — Deep Learning & Transformers</div>
-            <div class="phase-badge">12 – 18 Months</div>
+            <div class="phase-badge">6 – 9 Months</div>
           </div>
           <div class="phase-desc">Enter the world of neural networks. Build image classifiers, sequence models, and fine-tune pre-trained LLMs.</div>
           <div class="phase-skills">
@@ -1829,9 +1838,9 @@
         <div class="phase-body">
           <div class="phase-meta">
             <div class="phase-title">Phase 4 — Specialise, Deploy & Get Hired</div>
-            <div class="phase-badge">18 – 24 Months</div>
+            <div class="phase-badge">9 – 12 Months</div>
           </div>
-          <div class="phase-desc">Pick your specialisation, build your portfolio, go deep on MLOps, and start applying aggressively. This is where it pays off.</div>
+          <div class="phase-desc">Pick your specialisation, build your portfolio, go deep on MLOps, and start applying aggressively. Month 12 is your target hire date.</div>
           <div class="phase-skills">
             <div class="phase-skill"><i class="fas fa-crosshairs c-yellow"></i> Pick your niche (NLP/CV/etc)</div>
             <div class="phase-skill"><i class="fas fa-ship c-yellow"></i> Docker & Deployment</div>
@@ -2128,28 +2137,28 @@
       </div>
 
 
-      <!-- Scene Manipulation -->
+      <!-- Multilingual OCR -->
       <div class="project-card reveal reveal-delay-1">
         <div class="project-top">
-          <div class="project-icon-wrap" style="background:rgba(236,72,153,0.12);border-color:rgba(236,72,153,0.3);">
-            <i class="fas fa-wand-magic-sparkles" style="color:#f472b6;"></i>
+          <div class="project-icon-wrap" style="background:rgba(6,182,212,0.12);border-color:rgba(6,182,212,0.3);">
+            <i class="fas fa-language" style="color:#22d3ee;"></i>
           </div>
-          <div class="project-domain-tag" style="background:rgba(236,72,153,0.1);border-color:rgba(236,72,153,0.25);color:#f472b6;">
-            Image GenAI
+          <div class="project-domain-tag" style="background:rgba(6,182,212,0.1);border-color:rgba(6,182,212,0.25);color:#22d3ee;">
+            Computer Vision · NLP
           </div>
         </div>
-        <div class="project-title">Scene Manipulation</div>
-        <div class="project-desc">AI-powered image editing that lets users modify specific elements of a scene through natural language prompts — remove objects, change backgrounds, swap lighting, and add or replace subjects seamlessly.</div>
+        <div class="project-title">Multilingual OCR</div>
+        <div class="project-desc">An end-to-end OCR pipeline that detects and extracts text from images across multiple languages — including Arabic, Hindi, Urdu, and Latin scripts — handling mixed-script documents, handwriting, and low-resolution scans.</div>
         <div class="project-highlights">
-          <div class="ph-item"><i class="fas fa-check-circle"></i> Text-guided inpainting</div>
-          <div class="ph-item"><i class="fas fa-check-circle"></i> Mask-free object removal</div>
-          <div class="ph-item"><i class="fas fa-check-circle"></i> Style & lighting transfer</div>
+          <div class="ph-item"><i class="fas fa-check-circle"></i> 10+ language scripts supported</div>
+          <div class="ph-item"><i class="fas fa-check-circle"></i> Handles mixed-script documents</div>
+          <div class="ph-item"><i class="fas fa-check-circle"></i> Works on scans, photos & PDFs</div>
         </div>
         <div class="project-tags">
-          <span class="ptag ptag-gen">Stable Diffusion</span>
-          <span class="ptag ptag-gen">ControlNet</span>
-          <span class="ptag ptag-dl">Inpainting</span>
-          <span class="ptag ptag-ml">Diffusers</span>
+          <span class="ptag ptag-cv">Tesseract</span>
+          <span class="ptag ptag-dl">TrOCR</span>
+          <span class="ptag ptag-cv">OpenCV</span>
+          <span class="ptag ptag-ml">PaddleOCR</span>
         </div>
       </div>
 
@@ -2234,7 +2243,7 @@
 
       <div class="thank-you">
         "Every expert in this field started exactly where you are right now — confused, curious, and a little scared. The only difference between them and someone who never made it is that they kept going. You've taken the first step by being here today. Now take the second step tonight. I'm cheering for every single one of you."
-        <strong>— Your AI Mentor &nbsp;·&nbsp; AI/ML/DL Subject Matter Expert</strong>
+        <strong>Majid Ansari &nbsp;·&nbsp; AI/ML/DL Subject Matter Expert</strong>
       </div>
     </div>
   </div>
@@ -2242,7 +2251,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>Built with passion for the next generation of <span>AI professionals</span> &nbsp;·&nbsp; Session &copy; 2025 &nbsp;·&nbsp; Shared freely for educational use</p>
+  <p>Built with passion for the next generation of <span>AI professionals</span> &nbsp;·&nbsp; Session &copy; 2026 &nbsp;·&nbsp; Shared freely for educational use</p>
 </footer>
 
 <script>
