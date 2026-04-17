@@ -725,20 +725,29 @@
     border: 3px solid;
   }
 
-  .phase-body { flex: 1; padding-top: 8px; }
+  .phase-body {
+    flex: 1;
+    min-width: 0;
+    padding-top: 8px;
+    overflow: hidden;
+  }
 
   .phase-meta {
     display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
     flex-wrap: wrap;
   }
 
-  .phase-title { font-size: 1.25rem; font-weight: 700; }
+  .phase-title {
+    font-size: 1.25rem; font-weight: 700;
+    word-break: break-word;
+  }
 
   .phase-badge {
     background: rgba(124,58,237,0.15);
     border: 1px solid rgba(124,58,237,0.3);
     color: var(--purple-light); border-radius: 100px;
     padding: 3px 12px; font-size: 0.78rem; font-weight: 600;
+    white-space: nowrap;
   }
 
   .phase-desc { color: var(--gray); font-size: 0.875rem; margin-bottom: 16px; }
@@ -747,6 +756,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 8px;
+    width: 100%;
   }
 
   .phase-skill {
@@ -755,6 +765,7 @@
     border-radius: 8px; padding: 8px 12px;
     font-size: 0.82rem; color: var(--gray-light);
     display: flex; align-items: center; gap: 7px;
+    min-width: 0; overflow: hidden;
   }
 
   .phase-skill i { font-size: 0.7rem; }
@@ -1158,11 +1169,17 @@
 
     section { padding: 70px 16px; }
 
-    .roadmap-timeline::before { left: 28px; }
+    .roadmap-timeline::before { left: 24px; }
 
-    .phase { gap: 20px; }
+    .phase { gap: 14px; }
 
-    .phase-icon-wrap { width: 56px; height: 56px; font-size: 1.2rem; }
+    .phase-icon-wrap { width: 48px; height: 48px; font-size: 1rem; flex-shrink: 0; }
+
+    .phase-title { font-size: 1rem; }
+
+    .phase-skills { grid-template-columns: 1fr 1fr; }
+
+    .phase-skill { font-size: 0.78rem; padding: 7px 10px; }
 
     .cta-box { padding: 40px 24px; }
 
@@ -1174,8 +1191,308 @@
 
   @media (max-width: 480px) {
     .stats-grid { grid-template-columns: 1fr; }
-    .phase-skills { grid-template-columns: 1fr 1fr; }
+    .phase { gap: 10px; }
+    .phase-icon-wrap { width: 40px; height: 40px; font-size: 0.9rem; }
+    .roadmap-timeline::before { left: 20px; }
+    .phase-skills { grid-template-columns: 1fr; }
+    .phase-title { font-size: 0.95rem; }
   }
+
+  /* ── QUICK POLL ── */
+  .poll-box {
+    margin-top: 40px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px; padding: 32px;
+  }
+
+  .poll-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 20px; text-align: center;
+  }
+
+  .poll-heading i { color: var(--purple-light); margin-right: 8px; }
+
+  .poll-options {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center;
+  }
+
+  .poll-btn {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--gray-light); border-radius: 100px;
+    padding: 10px 20px; font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; transition: all 0.25s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .poll-btn:hover {
+    border-color: var(--purple-light);
+    color: var(--white);
+    background: rgba(124,58,237,0.1);
+  }
+
+  .poll-btn.selected {
+    background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(37,99,235,0.25));
+    border-color: var(--purple-light);
+    color: var(--white);
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.2);
+  }
+
+  .poll-tip {
+    margin-top: 20px;
+    background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(37,99,235,0.1));
+    border: 1px solid rgba(124,58,237,0.25);
+    border-radius: 12px; padding: 16px 20px;
+    font-size: 0.9rem; color: var(--gray-light);
+    line-height: 1.6; display: none;
+    animation: fadeSlideUp 0.4s ease both;
+  }
+
+  .poll-tip.visible { display: block; }
+  .poll-tip strong { color: var(--white); }
+
+  /* ── QR CODE ── */
+  .hero-qr {
+    display: flex; align-items: center; gap: 16px;
+    justify-content: center; margin-top: 24px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 14px 24px;
+    animation: fadeSlideUp 0.9s ease 0.6s both;
+  }
+
+  .qr-img {
+    width: 72px; height: 72px; border-radius: 8px;
+    background: #fff; padding: 4px;
+    flex-shrink: 0;
+  }
+
+  .qr-text { text-align: left; }
+  .qr-text strong { display: block; font-size: 0.9rem; margin-bottom: 4px; }
+  .qr-text span { font-size: 0.78rem; color: var(--gray); }
+
+  /* ── SKILLS CHECKLIST ── */
+  .phase-progress-wrap {
+    margin-bottom: 14px;
+  }
+
+  .phase-progress-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.78rem; color: var(--gray);
+    margin-bottom: 6px;
+  }
+
+  .phase-progress-bar {
+    height: 6px; border-radius: 100px;
+    background: rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+
+  .phase-progress-fill {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, var(--purple), var(--blue));
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .phase-skill {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px; padding: 8px 12px;
+    font-size: 0.82rem; color: var(--gray-light);
+    display: flex; align-items: center; gap: 10px;
+    min-width: 0; overflow: hidden;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    user-select: none;
+  }
+
+  .phase-skill:hover { border-color: rgba(124,58,237,0.4); }
+
+  .phase-skill.checked {
+    background: rgba(16,185,129,0.08);
+    border-color: rgba(16,185,129,0.35);
+    color: var(--white);
+  }
+
+  .skill-check {
+    width: 16px; height: 16px; border-radius: 4px;
+    border: 2px solid rgba(255,255,255,0.2);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; font-size: 0.6rem;
+    background: transparent;
+  }
+
+  .phase-skill.checked .skill-check {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+  }
+
+  /* ── CAREER QUIZ ── */
+  #quiz { background: var(--bg3); }
+
+  .quiz-wrap {
+    max-width: 760px; margin: 56px auto 0;
+  }
+
+  .quiz-step { display: none; }
+  .quiz-step.active { display: block; animation: fadeSlideUp 0.4s ease both; }
+
+  .quiz-q-num {
+    font-size: 0.78rem; color: var(--purple-light);
+    font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+
+  .quiz-question {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.35rem; font-weight: 700;
+    margin-bottom: 28px; line-height: 1.3;
+  }
+
+  .quiz-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .quiz-opt {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 14px; padding: 18px 16px;
+    cursor: pointer; transition: all 0.22s;
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--gray-light);
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .quiz-opt i { font-size: 1.1rem; flex-shrink: 0; }
+
+  .quiz-opt:hover {
+    border-color: var(--purple-light);
+    color: var(--white);
+    background: rgba(124,58,237,0.1);
+    transform: translateY(-3px);
+  }
+
+  .quiz-opt.selected {
+    border-color: var(--purple);
+    background: rgba(124,58,237,0.18);
+    color: var(--white);
+  }
+
+  .quiz-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 28px;
+  }
+
+  .quiz-dots {
+    display: flex; gap: 6px;
+  }
+
+  .qdot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    transition: background 0.3s, width 0.3s;
+  }
+
+  .qdot.active { background: var(--purple-light); width: 20px; border-radius: 4px; }
+  .qdot.done { background: var(--green); }
+
+  .quiz-next-btn {
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    color: #fff; border: none; border-radius: 100px;
+    padding: 12px 28px; font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; transition: opacity 0.2s, transform 0.2s;
+    font-family: 'Inter', sans-serif;
+    opacity: 0.4; pointer-events: none;
+  }
+
+  .quiz-next-btn.ready { opacity: 1; pointer-events: auto; }
+  .quiz-next-btn.ready:hover { transform: translateY(-2px); }
+
+  /* Quiz result */
+  .quiz-result {
+    display: none;
+    animation: fadeSlideUp 0.5s ease both;
+  }
+
+  .quiz-result.active { display: block; }
+
+  .result-card {
+    background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(37,99,235,0.12));
+    border: 2px solid rgba(124,58,237,0.35);
+    border-radius: 20px; padding: 36px;
+    text-align: center;
+  }
+
+  .result-role-icon {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin: 0 auto 20px;
+  }
+
+  .result-label {
+    font-size: 0.8rem; color: var(--purple-light);
+    font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  .result-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem; font-weight: 800; margin-bottom: 12px;
+  }
+
+  .result-desc {
+    color: var(--gray-light); font-size: 0.95rem;
+    line-height: 1.7; max-width: 520px; margin: 0 auto 28px;
+  }
+
+  .result-steps {
+    display: flex; gap: 12px; justify-content: center;
+    flex-wrap: wrap; margin-bottom: 24px;
+  }
+
+  .result-step {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 10px 16px;
+    font-size: 0.82rem; color: var(--gray-light);
+  }
+
+  .result-step strong { color: var(--white); display: block; margin-bottom: 2px; }
+
+  .quiz-retry {
+    background: none; border: 1px solid rgba(255,255,255,0.15);
+    color: var(--gray); border-radius: 100px;
+    padding: 9px 22px; font-size: 0.85rem;
+    cursor: pointer; transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .quiz-retry:hover { border-color: var(--purple-light); color: var(--white); }
+
+  /* ── SHOW MORE TOGGLE ── */
+  .show-more-btn {
+    display: flex; align-items: center; gap: 8px;
+    margin: 24px auto 0;
+    background: rgba(124,58,237,0.1);
+    border: 1px solid rgba(124,58,237,0.3);
+    color: var(--purple-light); border-radius: 100px;
+    padding: 10px 24px; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; transition: all 0.25s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .show-more-btn:hover { background: rgba(124,58,237,0.2); }
+
+  .niche-fields-wrap { display: none; }
+  .niche-fields-wrap.expanded { display: block; animation: fadeSlideUp 0.4s ease both; }
 
   /* scroll indicator */
   .scroll-progress {
@@ -1214,6 +1531,7 @@
       <li><a href="#landscape">Landscape</a></li>
       <li><a href="#aifields">AI in Every Field</a></li>
       <li><a href="#careers">Careers</a></li>
+      <li><a href="#quiz">Career Quiz</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#resources">Resources</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -1231,6 +1549,7 @@
   <a href="#landscape" onclick="closeMobile()">AI Landscape</a>
   <a href="#aifields" onclick="closeMobile()">AI in Every Field</a>
   <a href="#careers" onclick="closeMobile()">Career Paths</a>
+  <a href="#quiz" onclick="closeMobile()">Career Quiz</a>
   <a href="#roadmap" onclick="closeMobile()">Roadmap</a>
   <a href="#resources" onclick="closeMobile()">Resources</a>
   <a href="#projects" onclick="closeMobile()">My Projects</a>
@@ -1306,6 +1625,15 @@
       </a>
     </div>
 
+    <!-- QR Code -->
+    <div class="hero-qr">
+      <img class="qr-img" id="heroQR" src="" alt="QR Code">
+      <div class="qr-text">
+        <strong><i class="fas fa-qrcode" style="color:var(--purple-light);margin-right:6px;"></i>Scan to open on your phone</strong>
+        <span>Follow along, bookmark, and share with friends</span>
+      </div>
+    </div>
+
     <!-- Tech strip -->
     <div class="hero-tech-strip">
       <span class="tech-item"><i class="fab fa-python"></i> Python</span>
@@ -1358,6 +1686,19 @@
 
     <div class="why-text reveal">
       <strong>This is not hype — it's the biggest hiring wave of our generation.</strong> Every industry from healthcare to finance, retail to agriculture is integrating AI into its core operations. Companies are desperately searching for people who can build, deploy, and maintain AI systems. A student who starts learning today and stays consistent for just 12 months can realistically land their first AI role. The best time to start was yesterday. The second best time is <strong>right now.</strong>
+    </div>
+
+    <!-- Quick Poll -->
+    <div class="poll-box reveal">
+      <div class="poll-heading"><i class="fas fa-hand-paper"></i> Quick — which best describes you right now?</div>
+      <div class="poll-options">
+        <button class="poll-btn" onclick="selectPoll(this,'student')">🎓 Final Year Student</button>
+        <button class="poll-btn" onclick="selectPoll(this,'professional')">💼 Working Professional</button>
+        <button class="poll-btn" onclick="selectPoll(this,'switcher')">🔄 Career Switcher</button>
+        <button class="poll-btn" onclick="selectPoll(this,'coder')">🧑‍💻 Already Coding</button>
+        <button class="poll-btn" onclick="selectPoll(this,'curious')">🤷 Just Curious</button>
+      </div>
+      <div class="poll-tip" id="pollTip"></div>
     </div>
   </div>
 </section>
@@ -1507,8 +1848,16 @@
 
     </div>
 
+    <!-- Show More Toggle -->
+    <div style="text-align:center;">
+      <button class="show-more-btn" id="nicheToggle" onclick="toggleNiche()">
+        <i class="fas fa-gem"></i> Show Niche & Emerging Fields <i class="fas fa-chevron-down" id="nicheChevron"></i>
+      </button>
+    </div>
+
+    <div class="niche-fields-wrap" id="nicheWrap">
     <!-- Niche Fields -->
-    <div class="fields-category-label reveal" style="margin-top:48px;">
+    <div class="fields-category-label reveal" style="margin-top:32px;">
       <i class="fas fa-gem"></i> Niche & Emerging Fields
     </div>
 
@@ -1625,6 +1974,8 @@
     </div>
 
     <!-- Bottom callout -->
+    </div><!-- /niche-fields-wrap -->
+
     <div class="fields-callout reveal">
       <i class="fas fa-infinity" style="font-size:2rem;color:var(--purple-light);margin-bottom:16px;display:block;"></i>
       <strong>No field is too small or too specialised for AI.</strong>
@@ -1757,6 +2108,121 @@
   </div>
 </section>
 
+<!-- CAREER QUIZ -->
+<section id="quiz">
+  <div class="container">
+    <div class="section-label">Find Your Path</div>
+    <h2 class="section-title">Which AI Role <span>Suits You?</span></h2>
+    <p class="section-desc">Answer 4 quick questions and get a personalised AI career recommendation — no sign-up needed.</p>
+
+    <div class="quiz-wrap">
+
+      <!-- Step 1 -->
+      <div class="quiz-step active" id="qStep1">
+        <div class="quiz-q-num">Question 1 of 4</div>
+        <div class="quiz-question">What's your primary background?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="selectQuiz(this,1,'math')"><i class="fas fa-square-root-variable c-purple"></i> Math / Science</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,1,'cs')"><i class="fas fa-code c-blue"></i> Engineering / CS</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,1,'biz')"><i class="fas fa-chart-line c-green"></i> Business / Management</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,1,'design')"><i class="fas fa-palette c-pink"></i> Creative / Design</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,1,'other')"><i class="fas fa-question c-yellow"></i> Other / Non-tech</div>
+        </div>
+        <div class="quiz-nav">
+          <div class="quiz-dots">
+            <div class="qdot active" id="dot1_1"></div>
+            <div class="qdot" id="dot1_2"></div>
+            <div class="qdot" id="dot1_3"></div>
+            <div class="qdot" id="dot1_4"></div>
+          </div>
+          <button class="quiz-next-btn" id="qNext1" onclick="nextQuiz(2)">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="quiz-step" id="qStep2">
+        <div class="quiz-q-num">Question 2 of 4</div>
+        <div class="quiz-question">What excites you most about AI?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="selectQuiz(this,2,'build')"><i class="fas fa-hammer c-purple"></i> Building real products</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,2,'research')"><i class="fas fa-flask c-blue"></i> Research & discovery</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,2,'data')"><i class="fas fa-database c-green"></i> Making sense of data</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,2,'deploy')"><i class="fas fa-server c-yellow"></i> Deploying systems at scale</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,2,'create')"><i class="fas fa-wand-magic-sparkles c-pink"></i> Generating creative content</div>
+        </div>
+        <div class="quiz-nav">
+          <div class="quiz-dots">
+            <div class="qdot done" id="dot2_1"></div>
+            <div class="qdot active" id="dot2_2"></div>
+            <div class="qdot" id="dot2_3"></div>
+            <div class="qdot" id="dot2_4"></div>
+          </div>
+          <button class="quiz-next-btn" id="qNext2" onclick="nextQuiz(3)">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="quiz-step" id="qStep3">
+        <div class="quiz-q-num">Question 3 of 4</div>
+        <div class="quiz-question">What skill do you already have (even a little)?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="selectQuiz(this,3,'python')"><i class="fab fa-python c-blue"></i> Python / coding</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,3,'stats')"><i class="fas fa-chart-pie c-purple"></i> Statistics / math</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,3,'systems')"><i class="fas fa-gears c-yellow"></i> System / cloud design</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,3,'comms')"><i class="fas fa-comments c-green"></i> Communication / strategy</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,3,'none')"><i class="fas fa-seedling c-pink"></i> Nothing yet — starting fresh</div>
+        </div>
+        <div class="quiz-nav">
+          <div class="quiz-dots">
+            <div class="qdot done"></div>
+            <div class="qdot done"></div>
+            <div class="qdot active"></div>
+            <div class="qdot"></div>
+          </div>
+          <button class="quiz-next-btn" id="qNext3" onclick="nextQuiz(4)">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="quiz-step" id="qStep4">
+        <div class="quiz-q-num">Question 4 of 4</div>
+        <div class="quiz-question">How do you prefer to work?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="selectQuiz(this,4,'independent')"><i class="fas fa-user c-purple"></i> Deep solo research</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,4,'team')"><i class="fas fa-users c-blue"></i> Collaborating in a team</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,4,'problemsolve')"><i class="fas fa-puzzle-piece c-green"></i> Solving complex problems</div>
+          <div class="quiz-opt" onclick="selectQuiz(this,4,'creative')"><i class="fas fa-lightbulb c-yellow"></i> Creative & experimental</div>
+        </div>
+        <div class="quiz-nav">
+          <div class="quiz-dots">
+            <div class="qdot done"></div>
+            <div class="qdot done"></div>
+            <div class="qdot done"></div>
+            <div class="qdot active"></div>
+          </div>
+          <button class="quiz-next-btn" id="qNext4" onclick="showQuizResult()">See My Result <i class="fas fa-star"></i></button>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="quiz-result" id="quizResult">
+        <div class="result-card">
+          <div class="result-role-icon" id="resultIcon"><i class="fas fa-robot"></i></div>
+          <div class="result-label">Your Best-Fit AI Role</div>
+          <div class="result-role" id="resultRole">ML Engineer</div>
+          <div class="result-desc" id="resultDesc">You have the mindset and background to thrive in this role.</div>
+          <div class="result-steps" id="resultSteps"></div>
+          <a href="#roadmap" class="btn-primary" style="display:inline-flex;margin-bottom:16px;">
+            View Your Roadmap <i class="fas fa-arrow-right"></i>
+          </a><br>
+          <button class="quiz-retry" onclick="resetQuiz()"><i class="fas fa-rotate-left"></i> Try Again</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ROADMAP -->
 <section id="roadmap">
   <div class="container">
@@ -1775,15 +2241,19 @@
             <div class="phase-badge">0 – 3 Months</div>
           </div>
           <div class="phase-desc">Move fast but build solid fundamentals. Python and math are the bedrock — everything else sits on top of these.</div>
-          <div class="phase-skills">
-            <div class="phase-skill"><i class="fab fa-python c-purple"></i> Python basics</div>
-            <div class="phase-skill"><i class="fas fa-square-root-variable c-purple"></i> Linear Algebra</div>
-            <div class="phase-skill"><i class="fas fa-calculator c-purple"></i> Calculus basics</div>
-            <div class="phase-skill"><i class="fas fa-chart-pie c-purple"></i> Statistics & Probability</div>
-            <div class="phase-skill"><i class="fas fa-table c-purple"></i> NumPy & Pandas</div>
-            <div class="phase-skill"><i class="fas fa-trophy c-purple"></i> First Kaggle notebook</div>
-            <div class="phase-skill"><i class="fab fa-github c-purple"></i> Git & GitHub basics</div>
-            <div class="phase-skill"><i class="fas fa-chart-area c-purple"></i> Matplotlib / Seaborn</div>
+          <div class="phase-progress-wrap">
+            <div class="phase-progress-label"><span>Your progress</span><span id="p1pct">0 / 8</span></div>
+            <div class="phase-progress-bar"><div class="phase-progress-fill" id="p1bar"></div></div>
+          </div>
+          <div class="phase-skills" id="phase1skills">
+            <div class="phase-skill" onclick="toggleSkill(this,'p1bar','p1pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fab fa-python c-purple"></i> Python basics</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p1bar','p1pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-square-root-variable c-purple"></i> Linear Algebra</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p1bar','p1pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-calculator c-purple"></i> Calculus basics</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p1bar','p1pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-chart-pie c-purple"></i> Statistics & Probability</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p1bar','p1pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-table c-purple"></i> NumPy & Pandas</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p1bar','p1pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-trophy c-purple"></i> First Kaggle notebook</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p1bar','p1pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fab fa-github c-purple"></i> Git & GitHub basics</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p1bar','p1pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-chart-area c-purple"></i> Matplotlib / Seaborn</div>
           </div>
         </div>
       </div>
@@ -1797,15 +2267,19 @@
             <div class="phase-badge">3 – 6 Months</div>
           </div>
           <div class="phase-desc">Learn the classic ML toolkit and ship your first real project. By month 6 you should be interview-ready for analyst and junior ML roles.</div>
+          <div class="phase-progress-wrap">
+            <div class="phase-progress-label"><span>Your progress</span><span id="p2pct">0 / 8</span></div>
+            <div class="phase-progress-bar"><div class="phase-progress-fill" id="p2bar"></div></div>
+          </div>
           <div class="phase-skills">
-            <div class="phase-skill"><i class="fas fa-circle-dot c-blue"></i> Scikit-learn</div>
-            <div class="phase-skill"><i class="fas fa-tree c-blue"></i> Regression & Classification</div>
-            <div class="phase-skill"><i class="fas fa-diagram-project c-blue"></i> Clustering (K-Means)</div>
-            <div class="phase-skill"><i class="fas fa-sliders c-blue"></i> Feature Engineering</div>
-            <div class="phase-skill"><i class="fas fa-vials c-blue"></i> Model Evaluation & CV</div>
-            <div class="phase-skill"><i class="fas fa-magnifying-glass-chart c-blue"></i> EDA deep dive</div>
-            <div class="phase-skill"><i class="fas fa-folder-open c-blue"></i> End-to-end Project #1</div>
-            <div class="phase-skill"><i class="fas fa-medal c-blue"></i> Kaggle Competition entry</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p2bar','p2pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-circle-dot c-blue"></i> Scikit-learn</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p2bar','p2pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-tree c-blue"></i> Regression & Classification</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p2bar','p2pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-diagram-project c-blue"></i> Clustering (K-Means)</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p2bar','p2pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-sliders c-blue"></i> Feature Engineering</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p2bar','p2pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-vials c-blue"></i> Model Evaluation & CV</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p2bar','p2pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-magnifying-glass-chart c-blue"></i> EDA deep dive</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p2bar','p2pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-folder-open c-blue"></i> End-to-end Project #1</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p2bar','p2pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-medal c-blue"></i> Kaggle Competition entry</div>
           </div>
         </div>
       </div>
@@ -1819,15 +2293,19 @@
             <div class="phase-badge">6 – 9 Months</div>
           </div>
           <div class="phase-desc">Enter the world of neural networks. Build image classifiers, sequence models, and fine-tune pre-trained LLMs.</div>
+          <div class="phase-progress-wrap">
+            <div class="phase-progress-label"><span>Your progress</span><span id="p3pct">0 / 8</span></div>
+            <div class="phase-progress-bar"><div class="phase-progress-fill" id="p3bar"></div></div>
+          </div>
           <div class="phase-skills">
-            <div class="phase-skill"><i class="fas fa-fire c-green"></i> PyTorch fundamentals</div>
-            <div class="phase-skill"><i class="fas fa-layer-group c-green"></i> CNNs & Image Models</div>
-            <div class="phase-skill"><i class="fas fa-wave-square c-green"></i> RNNs & LSTMs</div>
-            <div class="phase-skill"><i class="fas fa-bolt c-green"></i> Transformers & Attention</div>
-            <div class="phase-skill"><i class="fas fa-robot c-green"></i> HuggingFace & Fine-tuning</div>
-            <div class="phase-skill"><i class="fas fa-cloud c-green"></i> Google Colab / GPU</div>
-            <div class="phase-skill"><i class="fas fa-code-branch c-green"></i> Deep Learning Project #2</div>
-            <div class="phase-skill"><i class="fas fa-blog c-green"></i> Write about your work</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p3bar','p3pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-fire c-green"></i> PyTorch fundamentals</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p3bar','p3pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-layer-group c-green"></i> CNNs & Image Models</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p3bar','p3pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-wave-square c-green"></i> RNNs & LSTMs</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p3bar','p3pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-bolt c-green"></i> Transformers & Attention</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p3bar','p3pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-robot c-green"></i> HuggingFace & Fine-tuning</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p3bar','p3pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-cloud c-green"></i> Google Colab / GPU</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p3bar','p3pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-code-branch c-green"></i> Deep Learning Project #2</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p3bar','p3pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-blog c-green"></i> Write about your work</div>
           </div>
         </div>
       </div>
@@ -1841,15 +2319,19 @@
             <div class="phase-badge">9 – 12 Months</div>
           </div>
           <div class="phase-desc">Pick your specialisation, build your portfolio, go deep on MLOps, and start applying aggressively. Month 12 is your target hire date.</div>
+          <div class="phase-progress-wrap">
+            <div class="phase-progress-label"><span>Your progress</span><span id="p4pct">0 / 8</span></div>
+            <div class="phase-progress-bar"><div class="phase-progress-fill" id="p4bar"></div></div>
+          </div>
           <div class="phase-skills">
-            <div class="phase-skill"><i class="fas fa-crosshairs c-yellow"></i> Pick your niche (NLP/CV/etc)</div>
-            <div class="phase-skill"><i class="fas fa-ship c-yellow"></i> Docker & Deployment</div>
-            <div class="phase-skill"><i class="fas fa-infinity c-yellow"></i> CI/CD for ML</div>
-            <div class="phase-skill"><i class="fas fa-eye c-yellow"></i> Monitoring & Drift</div>
-            <div class="phase-skill"><i class="fab fa-aws c-yellow"></i> Cloud (AWS/GCP/Azure)</div>
-            <div class="phase-skill"><i class="fas fa-briefcase c-yellow"></i> Portfolio with 3 projects</div>
-            <div class="phase-skill"><i class="fab fa-linkedin c-yellow"></i> LinkedIn presence</div>
-            <div class="phase-skill"><i class="fas fa-paper-plane c-yellow"></i> Apply to 5+ jobs/week</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p4bar','p4pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-crosshairs c-yellow"></i> Pick your niche (NLP/CV/etc)</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p4bar','p4pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-ship c-yellow"></i> Docker & Deployment</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p4bar','p4pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-infinity c-yellow"></i> CI/CD for ML</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p4bar','p4pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-eye c-yellow"></i> Monitoring & Drift</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p4bar','p4pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fab fa-aws c-yellow"></i> Cloud (AWS/GCP/Azure)</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p4bar','p4pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-briefcase c-yellow"></i> Portfolio with 3 projects</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p4bar','p4pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fab fa-linkedin c-yellow"></i> LinkedIn presence</div>
+            <div class="phase-skill" onclick="toggleSkill(this,'p4bar','p4pct',8)"><div class="skill-check"><i class="fas fa-check"></i></div><i class="fas fa-paper-plane c-yellow"></i> Apply to 5+ jobs/week</div>
           </div>
         </div>
       </div>
@@ -2290,6 +2772,181 @@
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
+  }
+
+  // QR Code — generates from current page URL
+  (function() {
+    const url = encodeURIComponent(window.location.href);
+    const qrSrc = 'https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=' + url + '&bgcolor=ffffff&color=0f0f1a';
+    document.getElementById('heroQR').src = qrSrc;
+  })();
+
+  // Quick Poll
+  const pollTips = {
+    student:      '<strong>🎓 Final Year Student?</strong> You have the most time and the least to lose. Start building projects now — your first AI job could come before graduation.',
+    professional: '<strong>💼 Working Professional?</strong> Your domain expertise is gold. AI skills on top of your industry knowledge makes you rare and highly hirable.',
+    switcher:     '<strong>🔄 Career Switcher?</strong> You\'re actually at an advantage. Your domain knowledge + AI = a combination most fresh grads can\'t match.',
+    coder:        '<strong>🧑‍💻 Already Coding?</strong> You\'re one step ahead. Jump straight to ML libraries — NumPy, Pandas, Scikit-learn are your next stop.',
+    curious:      '<strong>🤷 Just Curious?</strong> Curiosity is how every great AI career started. Stick around — by the end of this session you\'ll know exactly where to start.'
+  };
+
+  function selectPoll(btn, type) {
+    document.querySelectorAll('.poll-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const tip = document.getElementById('pollTip');
+    tip.innerHTML = pollTips[type];
+    tip.classList.add('visible');
+  }
+
+  // Skills Checklist with localStorage
+  function toggleSkill(el, barId, pctId, total) {
+    el.classList.toggle('checked');
+    const parent = el.closest('.phase-skills');
+    const checked = parent.querySelectorAll('.phase-skill.checked').length;
+    const pct = Math.round((checked / total) * 100);
+    document.getElementById(barId).style.width = pct + '%';
+    document.getElementById(pctId).textContent = checked + ' / ' + total;
+    saveSkills();
+  }
+
+  function saveSkills() {
+    const state = {};
+    document.querySelectorAll('.phase-skill').forEach((el, i) => {
+      state[i] = el.classList.contains('checked');
+    });
+    localStorage.setItem('aiways_skills', JSON.stringify(state));
+  }
+
+  function loadSkills() {
+    const saved = localStorage.getItem('aiways_skills');
+    if (!saved) return;
+    const state = JSON.parse(saved);
+    document.querySelectorAll('.phase-skill').forEach((el, i) => {
+      if (state[i]) {
+        el.classList.add('checked');
+        const barId = el.getAttribute('onclick').match(/'(p\dbар)'/)?.[1] ||
+          el.getAttribute('onclick').match(/'([^']+bar)'/)?.[1];
+        const pctId = el.getAttribute('onclick').match(/'([^']+pct)'/)?.[1];
+        const total = parseInt(el.getAttribute('onclick').match(/,(\d+)\)/)?.[1]) || 8;
+        if (barId && pctId) {
+          const parent = el.closest('.phase-skills');
+          const checked = parent.querySelectorAll('.phase-skill.checked').length;
+          document.getElementById(barId).style.width = Math.round(checked/total*100) + '%';
+          document.getElementById(pctId).textContent = checked + ' / ' + total;
+        }
+      }
+    });
+  }
+
+  // Reload skill progress bars after page load
+  window.addEventListener('load', () => {
+    const saved = localStorage.getItem('aiways_skills');
+    if (!saved) return;
+    const state = JSON.parse(saved);
+    const skills = document.querySelectorAll('.phase-skill');
+    skills.forEach((el, i) => { if (state[i]) el.classList.add('checked'); });
+    [['p1bar','p1pct'],['p2bar','p2pct'],['p3bar','p3pct'],['p4bar','p4pct']].forEach(([bar,pct]) => {
+      const barEl = document.getElementById(bar);
+      const pctEl = document.getElementById(pct);
+      if (!barEl) return;
+      const phase = barEl.closest('.phase-body');
+      const total = phase.querySelectorAll('.phase-skill').length;
+      const checked = phase.querySelectorAll('.phase-skill.checked').length;
+      barEl.style.width = Math.round(checked/total*100) + '%';
+      pctEl.textContent = checked + ' / ' + total;
+    });
+  });
+
+  // Career Quiz
+  const quizAnswers = {};
+
+  const quizResults = {
+    researcher:    { icon:'fas fa-flask', role:'AI Research Scientist', desc:'Your analytical mindset, love of math, and independent work style align perfectly with research. You\'d thrive pushing boundaries and publishing breakthroughs.', steps:[{t:'Start',d:'Read 2 ML papers/week on ArXiv'},{ t:'Build',d:'Reproduce a published model from scratch'},{t:'Connect',d:'Engage on Papers With Code'}]},
+    mlengineer:    { icon:'fas fa-microchip', role:'ML Engineer', desc:'You love building things that work in the real world. You\'re wired to take models from notebooks to production — a highly valued, well-paid role.', steps:[{t:'Start',d:'Master Python & Scikit-learn'},{t:'Build',d:'Deploy a model with FastAPI or Streamlit'},{t:'Connect',d:'Contribute to open-source ML repos'}]},
+    datascientist: { icon:'fas fa-chart-bar', role:'Data Scientist', desc:'You\'re drawn to data, patterns, and storytelling with numbers. Data Scientists are in huge demand across every industry.', steps:[{t:'Start',d:'Master Pandas, NumPy & SQL'},{t:'Build',d:'Complete 3 Kaggle competitions'},{t:'Connect',d:'Write about your findings on LinkedIn'}]},
+    nlpengineer:   { icon:'fas fa-comment-dots', role:'NLP Engineer', desc:'Language, communication, and working with text models excites you. NLP is one of the hottest AI fields — LLMs have made it explode.', steps:[{t:'Start',d:'Take the HuggingFace NLP course'},{t:'Build',d:'Fine-tune a BERT model on custom data'},{t:'Connect',d:'Build and share a chatbot project'}]},
+    mlops:         { icon:'fas fa-server', role:'MLOps Engineer', desc:'You think about systems, scale, and reliability. MLOps is the backbone of production AI — and massively underserved with talent.', steps:[{t:'Start',d:'Learn Docker & Kubernetes basics'},{t:'Build',d:'Set up a CI/CD pipeline for an ML model'},{t:'Connect',d:'Get AWS/GCP ML certification'}]},
+    aipm:          { icon:'fas fa-lightbulb', role:'AI Product Manager', desc:'You see the big picture, speak both business and tech, and want to guide what gets built and why. AI PMs are rare and extremely well paid.', steps:[{t:'Start',d:'Take deeplearning.ai AI for Everyone'},{t:'Build',d:'Write product specs for an AI feature'},{t:'Connect',d:'Shadow an engineering team or join a startup'}]},
+    prompteng:     { icon:'fas fa-wand-magic-sparkles', role:'Prompt Engineer / GenAI Developer', desc:'You\'re creative, experimental, and excited by what LLMs can generate. This is a brand new, fast-growing specialisation.', steps:[{t:'Start',d:'Explore OpenAI API & LangChain'},{t:'Build',d:'Create an AI app with GPT + RAG'},{t:'Connect',d:'Share your GenAI experiments on LinkedIn'}]}
+  };
+
+  const resultMap = {
+    'math-research-stats-independent':   'researcher',
+    'math-research-stats-problemsolve':  'researcher',
+    'cs-build-python-team':              'mlengineer',
+    'cs-build-python-problemsolve':      'mlengineer',
+    'cs-deploy-systems-problemsolve':    'mlops',
+    'cs-deploy-systems-team':            'mlops',
+    'biz-data-comms-team':               'datascientist',
+    'biz-data-stats-team':               'datascientist',
+    'cs-create-python-creative':         'prompteng',
+    'design-create-none-creative':       'prompteng',
+    'other-create-none-creative':        'prompteng',
+    'biz-build-comms-team':              'aipm',
+    'biz-research-comms-independent':    'aipm',
+    'cs-research-python-independent':    'nlpengineer',
+    'other-data-comms-team':             'datascientist',
+  };
+
+  function getResult(answers) {
+    const key = `${answers[1]}-${answers[2]}-${answers[3]}-${answers[4]}`;
+    if (resultMap[key]) return resultMap[key];
+    const excite = answers[2], bg = answers[1], skill = answers[3], style = answers[4];
+    if (excite === 'research' || style === 'independent') return 'researcher';
+    if (excite === 'deploy' || skill === 'systems') return 'mlops';
+    if (excite === 'create') return 'prompteng';
+    if (bg === 'biz' || skill === 'comms') return style === 'team' ? 'datascientist' : 'aipm';
+    if (excite === 'data') return 'datascientist';
+    if (excite === 'build') return 'mlengineer';
+    return 'mlengineer';
+  }
+
+  function selectQuiz(el, step, value) {
+    el.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    quizAnswers[step] = value;
+    const btn = document.getElementById('qNext' + step);
+    btn.classList.add('ready');
+  }
+
+  function nextQuiz(toStep) {
+    document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('qStep' + toStep).classList.add('active');
+  }
+
+  function showQuizResult() {
+    document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+    const key = getResult(quizAnswers);
+    const data = quizResults[key];
+    document.getElementById('resultIcon').innerHTML = `<i class="${data.icon}"></i>`;
+    document.getElementById('resultRole').textContent = data.role;
+    document.getElementById('resultDesc').textContent = data.desc;
+    document.getElementById('resultSteps').innerHTML = data.steps.map(s =>
+      `<div class="result-step"><strong>${s.t}</strong>${s.d}</div>`).join('');
+    const result = document.getElementById('quizResult');
+    result.classList.add('active');
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function resetQuiz() {
+    Object.keys(quizAnswers).forEach(k => delete quizAnswers[k]);
+    document.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.quiz-next-btn').forEach(b => b.classList.remove('ready'));
+    document.getElementById('quizResult').classList.remove('active');
+    document.getElementById('qStep1').classList.add('active');
+  }
+
+  // Niche fields toggle
+  function toggleNiche() {
+    const wrap = document.getElementById('nicheWrap');
+    const chevron = document.getElementById('nicheChevron');
+    const btn = document.getElementById('nicheToggle');
+    const expanded = wrap.classList.toggle('expanded');
+    chevron.style.transform = expanded ? 'rotate(180deg)' : '';
+    btn.innerHTML = expanded
+      ? '<i class="fas fa-gem"></i> Hide Niche Fields <i class="fas fa-chevron-down" id="nicheChevron" style="transform:rotate(180deg);transition:transform 0.3s;"></i>'
+      : '<i class="fas fa-gem"></i> Show Niche & Emerging Fields <i class="fas fa-chevron-down" id="nicheChevron" style="transition:transform 0.3s;"></i>';
+    if (expanded) wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // Typewriter cycling roles
